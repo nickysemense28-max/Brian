@@ -1,0 +1,469 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Brian Coffee Shop</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* BODY */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.50)
+                ),
+                url("coffee.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: rgba(245, 232, 204, 0.96);
+            padding: 18px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            background-color: #c65f1e;
+            color: white;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #8f3f12;
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTACT CONTAINER */
+        .contact-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: clamp(20px, 4vw, 40px);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        /* HEADING */
+        h1 {
+            text-align: center;
+            color: #9b4818;
+            font-size: clamp(30px, 4vw, 42px);
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: clamp(14px, 2vw, 17px);
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        /* CONTACT CONTENT */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* CONTACT INFORMATION */
+        .contact-info {
+            padding: 25px;
+            background: #fff8ed;
+            border-radius: 12px;
+            border-left: 5px solid #c65f1e;
+        }
+
+        .contact-info h2 {
+            color: #9b4818;
+            font-size: clamp(21px, 3vw, 27px);
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .info-icon {
+            font-size: 23px;
+            flex-shrink: 0;
+        }
+
+        .info-item p {
+            color: #444;
+            font-size: 15px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .info-item strong {
+            color: #9b4818;
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            min-width: 0;
+        }
+
+        .contact-form h2 {
+            color: #9b4818;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form label {
+            color: #444;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: -8px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: 15px;
+            background: #fff;
+            color: #333;
+            transition: border-color 0.3s,
+                        box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #c65f1e;
+            box-shadow: 0 0 0 3px rgba(198, 95, 30, 0.15);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* SEND BUTTON */
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #c65f1e;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #8f3f12;
+            transform: translateY(-2px);
+        }
+
+        .contact-form button:focus-visible,
+        nav a:focus-visible {
+            outline: 3px solid #9b4818;
+            outline-offset: 3px;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            color: white;
+            padding: 18px 12px;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* TABLETS */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            nav {
+                padding: 15px 10px;
+                gap: 8px;
+            }
+
+            nav a {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .contact-container {
+                width: 94%;
+                margin: 30px auto;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .contact-info {
+                padding: 22px;
+            }
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 8px;
+                gap: 7px;
+            }
+
+            nav a {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .contact-container {
+                width: 94%;
+                margin: 20px auto;
+                padding: 22px 16px;
+                border-radius: 10px;
+            }
+
+            .subtitle {
+                margin-bottom: 25px;
+            }
+
+            .contact-content {
+                gap: 22px;
+            }
+
+            .contact-info {
+                padding: 18px 15px;
+            }
+
+            .contact-info h2 {
+                margin-bottom: 20px;
+            }
+
+            .info-item {
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .info-item p {
+                font-size: 14px;
+            }
+
+            .contact-form h2 {
+                font-size: 22px;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .contact-form textarea {
+                min-height: 130px;
+            }
+
+            .contact-form button {
+                padding: 13px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        /* ACCESSIBILITY */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav aria-label="Main navigation">
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html"
+           class="active"
+           aria-current="page">Contact</a>
+        <a href="product.html">Product</a>
+    </nav>
+
+    <!-- CONTACT SECTION -->
+    <main class="contact-container">
+
+        <h1>Contact Us</h1>
+
+        <p class="subtitle">
+            We'd love to hear from you!
+            Visit us or send us a message.
+        </p>
+
+        <div class="contact-content">
+
+            <!-- CONTACT INFORMATION -->
+            <section class="contact-info">
+
+                <h2>Brian Coffee Shop</h2>
+
+                <div class="info-item">
+                    <span class="info-icon" aria-hidden="true">📍 </span>
+                    <p>
+                        <strong>Address:</strong><br>
+                        Aurora, Zamboanga del Sur, Philippines
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon" aria-hidden="true">📍 </span>
+                    <p>
+                        <strong>Phone:</strong><br>
+                        <a href="tel:09659152775">
+                            09659152775
+                        </a>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon" aria-hidden="true">📧 </span>
+                    <p>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:penasmarkbryan@gmail.com">
+                            penasmarkbryan@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon" aria-hidden="true">🕐 </span>
+                    <p>
+                        <strong>Opening Hours:</strong><br>
+                        Monday - Sunday<br>
+                        8:00 AM - 9:00 PM
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- CONTACT FORM -->
+            <section class="contact-form">
+
+                <h2>Send Us a Message</h2>
+
+                <form action="mailto:penasmarkbryan@gmail.com"
+                      method="post"
+                      enctype="text/plain">
+
+                    <label for="name">Your Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="Name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <label for="email">Your Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="Email"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="subject">Subject</label>
+                    <input
+                        type="text"
+                        id="subject"
+                        name="Subject"
+                        placeholder="Enter message subject"
+                        required
+                    >
+
+                    <label for="message">Your Message</label>
+                    <textarea
+                        id="message"
+                        name="Message"
+                        placeholder="Write your message here..."
+                        required
+                    ></textarea>
+
+                    <button type="submit">
+                        Send Message ?
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 Brian Coffee Shop | All Rights Reserved
+    </footer>
+
+</body>
+</html>
+```
